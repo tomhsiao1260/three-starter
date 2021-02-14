@@ -1,0 +1,39 @@
+{
+    "extends": "airbnb-base",
+    "parser": "babel-eslint",
+    "env": {
+      "browser": true,
+      "node": true,
+      "es6": true,
+      "mocha": true 
+    },
+  
+    "plugins": [
+      "import"
+    ],
+  
+    "rules": {
+      "global-require": 0,
+      "no-restricted-globals": 0,
+      "no-shadow": 0,
+      "no-console": 0,
+      "no-tabs": 0,
+      "indent": 0,
+      "no-use-before-define": [2, "nofunc"],
+      "valid-jsdoc": 0,
+      "require-jsdoc": 0,
+  
+      "import/no-extraneous-dependencies": 0,
+      "import/no-unresolved": 0,
+      "import/extensions": 0,
+  
+      "no-mixed-operators": 0
+    },
+  
+    "globals": {
+      "graphql": true,
+      "module": true,
+      "require": true,
+      "__dirname": true
+    }
+  }

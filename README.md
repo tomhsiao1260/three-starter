@@ -1,11 +1,11 @@
 <h1 align="center">ThreeJS Starter</h1>
 
-<h4 align="center">
+<h3 align="center">
 This is my three.js starter based on object-oriented programming.
-<h4/>
+<h3/>
 
 <p align="center">
-    <img src="./static/cover.png" width="800px"/>
+    <img src="./static/cover.png" width="500px"/>
 </p>
 
 ### Installation

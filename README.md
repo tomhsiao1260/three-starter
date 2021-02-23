@@ -1,6 +1,12 @@
-# Webpack Frontend Starter
+<h1 align="center">ThreeJS Starter</h1>
 
-This is my webpack starter for frontend project.
+<p align="center">
+    <img src="./static/cover.png" width="1000px"/>
+</p>
+
+# ThreeJS Starter
+
+This is my three.js starter for frontend project.
 
 ### Installation
 
@@ -19,10 +25,3 @@ npm run dev
 ```
 npm run build
 ```
-
-### Reference
-
-* Webpack + Babel : https://dev.to/alecgodwin/how-to-setup-webpack-and-babel-for-es6-dpk
-* CSS + file-loader : https://webpack.js.org/guides/asset-management/
-* SASS : https://webpack.js.org/loaders/sass-loader/
-* Dev + Prod : https://webpack.js.org/guides/production/

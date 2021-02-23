@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 
-export default class Sphere {
+export default class Torus {
     constructor(_option) {
         this.material = _option.material;
         this.container = new THREE.Object3D();

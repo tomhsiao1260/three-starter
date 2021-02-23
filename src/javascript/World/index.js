@@ -3,6 +3,7 @@ import * as THREE from 'three';
 import Materials from './Materials';
 import Torus from './Torus';
 import Plane from './Plane';
+import Fox from './Fox';
 
 export default class World {
     constructor(_option) {
@@ -26,11 +27,12 @@ export default class World {
     start() {
         this.materials = new Materials({ resources: this.resources });
 
-        this.setSphere();
+        this.setTorus();
         this.setPlane();
+        this.setFox();
     }
 
-    setSphere() {
+    setTorus() {
         this.torus = new Torus({ material: this.materials.items.matcap.gold });
         this.container.add(this.torus.container);
     }
@@ -41,5 +43,13 @@ export default class World {
             time: this.time,
         });
         this.container.add(this.plane.container);
+    }
+
+    setFox() {
+        this.fox = new Fox({
+            resources: this.resources,
+            time: this.time,
+        });
+        this.container.add(this.fox.container);
     }
 }

@@ -1,4 +1,7 @@
 import * as THREE from 'three';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js';
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
 
 import EventEmitter from './EventEmitter';
 
@@ -22,6 +25,46 @@ export default class Loader extends EventEmitter {
             action: (_resource) => {
                 textureLoader.load(_resource.source, (_texture) => {
                     this.fileLoadEnd(_resource, _texture);
+                });
+            },
+        });
+
+        // Draco
+        const dracoLoader = new DRACOLoader();
+        dracoLoader.setDecoderPath('draco/');
+        dracoLoader.setDecoderConfig({ type: 'js' });
+
+        this.loaders.push({
+            extensions: ['drc'],
+            action: (_resource) => {
+                dracoLoader.load(_resource.source, (_data) => {
+                    this.fileLoadEnd(_resource, _data);
+                    DRACOLoader.releaseDecoderModule();
+                });
+            },
+        });
+
+        // GLTF
+        const gltfLoader = new GLTFLoader();
+        gltfLoader.setDRACOLoader(dracoLoader);
+
+        this.loaders.push({
+            extensions: ['glb', 'gltf'],
+            action: (_resource) => {
+                gltfLoader.load(_resource.source, (_data) => {
+                    this.fileLoadEnd(_resource, _data);
+                });
+            },
+        });
+
+        // FBX
+        const fbxLoader = new FBXLoader();
+
+        this.loaders.push({
+            extensions: ['fbx'],
+            action: (_resource) => {
+                fbxLoader.load(_resource.source, (_data) => {
+                    this.fileLoadEnd(_resource, _data);
                 });
             },
         });

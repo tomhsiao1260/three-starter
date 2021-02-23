@@ -5,7 +5,7 @@ This is my three.js starter based on object-oriented programming.
 <h3/>
 
 <p align="center">
-    <img src="./static/cover.png" width="500px"/>
+    <img src="./static/cover.png" width="600px"/>
 </p>
 
 ### Installation

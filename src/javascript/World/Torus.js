@@ -4,6 +4,7 @@ export default class Torus {
     constructor(_option) {
         this.material = _option.material;
         this.container = new THREE.Object3D();
+        this.container.matrixAutoUpdate = false;
 
         this.setTorus();
     }
@@ -16,5 +17,6 @@ export default class Torus {
 
         this.container.position.set(0, 0.2, 0);
         this.container.rotation.y = 0.6;
+        this.container.updateMatrix();
     }
 }

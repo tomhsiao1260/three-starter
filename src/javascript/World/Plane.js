@@ -6,6 +6,7 @@ export default class Plane {
         this.time = _option.time;
 
         this.container = new THREE.Object3D();
+        this.container.matrixAutoUpdate = false;
 
         this.setPlane();
     }
@@ -18,6 +19,7 @@ export default class Plane {
 
         this.container.position.set(0, -0.2, 0);
         this.container.rotation.x = -Math.PI / 2;
+        this.container.updateMatrix();
 
         this.time.on('tick', () => {
             this.material.uniforms.uTime.value = this.time.elapsed / 1000;

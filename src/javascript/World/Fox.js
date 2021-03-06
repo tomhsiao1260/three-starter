@@ -6,6 +6,7 @@ export default class Fox {
         this.time = _option.time;
 
         this.container = new THREE.Object3D();
+        this.container.matrixAutoUpdate = false;
 
         this.setFox();
     }

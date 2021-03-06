@@ -12,6 +12,15 @@ export default class World {
         this.sizes = _option.sizes;
         this.camera = _option.camera;
         this.renderer = _option.renderer;
+        this.debug = _option.debug;
+
+        this.container = new THREE.Object3D();
+        this.container.matrixAutoUpdate = false;
+
+        if (this.debug) {
+            this.debugFolder = this.debug.addFolder('world');
+            this.debugFolder.open();
+        }
 
         this.container = new THREE.Object3D();
         this.container.matrixAutoUpdate = false;
@@ -33,7 +42,10 @@ export default class World {
     }
 
     setTorus() {
-        this.torus = new Torus({ material: this.materials.items.matcap.gold });
+        this.torus = new Torus({
+            material: this.materials.items.matcap.gold,
+            debug: this.debugFolder,
+        });
         this.container.add(this.torus.container);
     }
 
@@ -41,6 +53,7 @@ export default class World {
         this.plane = new Plane({
             material: this.materials.items.shader.plane,
             time: this.time,
+            debug: this.debugFolder,
         });
         this.container.add(this.plane.container);
     }
@@ -49,6 +62,7 @@ export default class World {
         this.fox = new Fox({
             resources: this.resources,
             time: this.time,
+            debug: this.debugFolder,
         });
         this.container.add(this.fox.container);
     }

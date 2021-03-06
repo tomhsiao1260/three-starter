@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import * as dat from 'dat.gui';
 
 import Time from './Utils/Time';
 import Sizes from './Utils/Sizes';
@@ -15,9 +16,22 @@ export default class Application {
         this.sizes = new Sizes();
         this.resources = new Resources();
 
+        this.setConfig();
+        this.setDebug();
         this.setRenderer();
         this.setCamera();
         this.setWorld();
+    }
+
+    setConfig() {
+        this.config = {};
+        this.config.debug = window.location.hash === '#debug';
+    }
+
+    setDebug() {
+        if (this.config.debug) {
+            this.debug = new dat.GUI({ width: 420 });
+        }
     }
 
     setRenderer() {
@@ -43,6 +57,7 @@ export default class Application {
             time: this.time,
             sizes: this.sizes,
             renderer: this.renderer,
+            debug: this.debug,
         });
 
         this.scene.add(this.camera.container);
@@ -59,6 +74,7 @@ export default class Application {
             sizes: this.sizes,
             camera: this.camera,
             renderer: this.renderer,
+            debug: this.debug,
         });
         this.scene.add(this.world.container);
     }

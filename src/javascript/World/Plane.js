@@ -4,9 +4,15 @@ export default class Plane {
     constructor(_option) {
         this.material = _option.material;
         this.time = _option.time;
+        this.debug = _option.debug;
 
         this.container = new THREE.Object3D();
         this.container.matrixAutoUpdate = false;
+
+        if (this.debug) {
+            this.debugFolder = this.debug.addFolder('plane');
+            this.debugFolder.open();
+        }
 
         this.setPlane();
     }
@@ -24,5 +30,13 @@ export default class Plane {
         this.time.on('tick', () => {
             this.material.uniforms.uTime.value = this.time.elapsed / 1000;
         });
+
+        if (this.debug) {
+            this.debugFolder.add(this.container, 'visible').name('visible');
+            this.debugFolder.add(this.container.rotation, 'z')
+                            .step(0.001).min(-Math.PI).max(Math.PI)
+                            .onChange(() => this.container.updateMatrix())
+                            .name('rotationZ');
+        }
     }
 }

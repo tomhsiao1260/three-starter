@@ -6,9 +6,15 @@ export default class Camera {
         this.time = _option.time;
         this.sizes = _option.sizes;
         this.renderer = _option.renderer;
+        this.debug = _option.debug;
 
         this.container = new THREE.Object3D();
         this.container.matrixAutoUpdate = false;
+
+        if (this.debug) {
+            this.debugFolder = this.debug.addFolder('camera');
+            // this.debugFolder.open();
+        }
 
         this.setInstance();
         this.setOrbitControls();

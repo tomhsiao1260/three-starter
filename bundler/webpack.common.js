@@ -12,7 +12,7 @@ module.exports = {
     devtool: 'source-map',
     plugins:
     [
-        new CleanWebpackPlugin(),
+        // new CleanWebpackPlugin(),
         new CopyWebpackPlugin({
             patterns: [{ from: path.resolve(__dirname, '../static') }],
         }),

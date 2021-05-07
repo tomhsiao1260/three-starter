@@ -13,8 +13,8 @@ A three.js starter based on object-oriented programming.
 - [Getting Started](#getting-started)
 - [Event Emitter](#event-emitter)
 - [Control](#control)
-- [Create Mesh](#create-mesh)
 - [Add Material](#add-material)
+- [Create Mesh](#create-mesh)
 - [Load Model](#load-model)
 - [Customized Shader](#customized-shader)
 - [GSAP Animation](#load-model)
@@ -45,9 +45,8 @@ npm run dev
 ## Control
 
 ## Add Material
-To create a material with external resources (ex: matcap), you can do the following steps.
 
-First, import the resources and put them into an array of objects.
+To create a material with external resources (ex: matcap), you can do the following steps. First, import the resources and put them into an array of objects.
 
 ```javascript
 // src/javascript/Resources.js
@@ -82,9 +81,7 @@ const mesh = new THREE.Mesh(geometry, material);
 
 ## Create Mesh
 
-Let's create a `THREE.Mesh` (ex: Torus) and add it to the scene.
-
-First, create a Torus class which can generate the `THREE.mesh` through the contructor.
+Let's create a `THREE.Mesh` (ex: Torus) and add it to the scene. First, create a Torus class which can generate the `THREE.mesh` through the contructor.
 
 ```javascript
 // src/javascript/World/Torus.js
@@ -116,11 +113,98 @@ setTorus() {
 }
 ```
 
-
-
 ## Load Model
 
+The following steps can load some external models (ex: `.glb`, `.fbx`, etc.). First, we need to import our model file.
+
+```javascript
+// src/javascript/Resources.js
+
+import foxSource from '../models/fox/glTF-Binary/Fox.glb';
+
+this.loader.load([
+    { name: 'fox', source: foxSource },
+    ...
+]);
+```
+
+Then create a class and add the loaded model to the `container` property.
+
+```javascript
+// src/javascript/World/Fox.js
+
+const gltf = this.resources.items.fox;
+this.container.add(gltf.scene);
+```
+
+Now we can create an instance of this class (just like [Create Mesh](#create-mesh)).
+
+```javascript
+// src/javascript/World/index.js
+
+import Fox from './Fox';
+
+start() {
+    ...
+    this.setFox();
+}
+
+setFox() {
+    this.fox = new Fox({
+        resources: this.resources,
+    });
+    this.container.add(this.fox.container);
+}
+```
+
+For simplicity, this starter only support `.glb`, `.gltf` and `.fbx` extensions. Draco compression would automatically support for models with `.glb` extension. If you want to load models with other extensions, you can check out `src/javascript/Utils/Loader.js` and write some custom model loaders.
+
 ## Customized Shader
+
+You can create some customized shader materials as follows.
+
+```javascript
+// src/javascript/Materials/Plane.js
+
+import vertexShader from '../../shaders/plane/vertex.glsl';
+import fragmentShader from '../../shaders/plane/fragment.glsl';
+
+export default function PlaneMaterial() {
+    const uniforms = {
+        uTime: { value: 0 },
+    };
+
+    const material = new THREE.ShaderMaterial({
+        vertexShader,
+        fragmentShader,
+        uniforms,
+    });
+
+    return material;
+}
+```
+
+Then create an instance object of this material.
+
+```javascript
+// src/javascript/World/Materials.js
+
+import PlaneMaterial from '../Materials/Plane';
+
+...
+
+this.items.shader.plane = new PlaneMaterial();
+```
+
+Now, we can use this shader material to create a plane mesh (just like [Create Mesh](#create-mesh)).
+
+```javascript
+// src/javascript/World/Plane.js
+
+const geometry = new THREE.PlaneGeometry(1.2, 0.7, 50, 50);
+const material = this.material.items.shader.plane;
+const mesh = new THREE.Mesh(geometry, material);
+```
 
 ## GSAP Animation
 

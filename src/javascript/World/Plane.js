@@ -19,7 +19,8 @@ export default class Plane {
 
     setPlane() {
         const geometry = new THREE.PlaneGeometry(1.2, 0.7, 50, 50);
-        const mesh = new THREE.Mesh(geometry, this.material);
+        const material = this.material.items.shader.plane;
+        const mesh = new THREE.Mesh(geometry, material);
 
         this.container.add(mesh);
 
@@ -28,7 +29,7 @@ export default class Plane {
         this.container.updateMatrix();
 
         this.time.on('tick', () => {
-            this.material.uniforms.uTime.value = this.time.elapsed / 1000;
+            material.uniforms.uTime.value = this.time.elapsed / 1000;
         });
 
         if (this.debug) {

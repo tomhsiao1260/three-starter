@@ -18,7 +18,8 @@ export default class Torus {
 
     setTorus() {
         const geometry = new THREE.TorusGeometry(0.25, 0.08, 32, 100);
-        const mesh = new THREE.Mesh(geometry, this.material);
+        const material = this.material.items.matcap.gold;
+        const mesh = new THREE.Mesh(geometry, material);
 
         this.container.add(mesh);
 

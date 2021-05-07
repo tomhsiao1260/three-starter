@@ -34,7 +34,7 @@ export default class World {
     }
 
     start() {
-        this.materials = new Materials({ resources: this.resources });
+        this.material = new Materials({ resources: this.resources });
 
         this.setTorus();
         this.setPlane();
@@ -43,7 +43,7 @@ export default class World {
 
     setTorus() {
         this.torus = new Torus({
-            material: this.materials.items.matcap.gold,
+            material: this.material,
             debug: this.debugFolder,
         });
         this.container.add(this.torus.container);
@@ -51,7 +51,7 @@ export default class World {
 
     setPlane() {
         this.plane = new Plane({
-            material: this.materials.items.shader.plane,
+            material: this.material,
             time: this.time,
             debug: this.debugFolder,
         });

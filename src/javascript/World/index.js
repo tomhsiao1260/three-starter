@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 
 import Materials from './Materials';
+import Controls from './Controls';
 import Torus from './Torus';
 import Plane from './Plane';
 import Fox from './Fox';
@@ -36,9 +37,18 @@ export default class World {
     start() {
         this.material = new Materials({ resources: this.resources });
 
+        this.setControls();
         this.setTorus();
         this.setPlane();
         this.setFox();
+    }
+
+    setControls() {
+        this.controls = new Controls({
+            time: this.time,
+            sizes: this.sizes,
+            camera: this.camera,
+        });
     }
 
     setTorus() {

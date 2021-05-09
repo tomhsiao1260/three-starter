@@ -12,7 +12,7 @@ A three.js starter based on object-oriented programming.
 - [Introduction](#introduction)
 - [Getting Started](#getting-started)
 - [Event Emitter](#event-emitter)
-- [Control](#control)
+- [Mouse Control](#mouse-control)
 - [Add Material](#add-material)
 - [Create Mesh](#create-mesh)
 - [Load Model](#load-model)
@@ -42,7 +42,67 @@ npm run dev
 
 ## Event Emitter
 
-## Control
+`Event Emitter` allows us to handle some custom events. For example, we can create an instance of `Time` class which is inherited from `Event Emitter`.
+
+```javascript
+// src/javascript/Application.js
+
+this.time = new Time();
+```
+
+Let's put some callbacks via `Event Emitter` built-in `on` method.
+
+```javascript
+this.time.on('tick', myCallback);
+```
+
+Now, we can use `trigger` method to execute those callbacks. Note that it would only trigger events with the same name (`tick` for this example).
+
+```javascript
+this.time.trigger('tick');
+```
+
+You can also remove callbacks via `remove` method.
+
+```javascript
+const event = this.time.on('tick', myCallback);
+
+this.time.remove(event);
+```
+
+Note that in `src/javascript/Utils/Time.js`, the `trigger('tick')` has already been used for each frame, so callbacks such as `this.time.on('tick', ... )` would be automatically executed once for each frame. In addition, `Resources` class in this starter is also inherited from `Event Emitter` and callbacks such as `this.resources.on('ready', ... )` would be triggered after all resources are loaded.
+
+You can also append different names to the callback, such as `.on('name1/name2/...', ... )`, so that both `.trigger('name1')` and `.trigger('name2')` would trigger the same callback. If you want to send parameters to the callback, you can use `.trigger('name', [para1, para2, ...])` which would send `para1` and `para2` as the first and second parameters to the callback, respectively.
+
+## Mouse Control
+
+The mouse controls are written in `src/javascript/World/Controls.js`. The instance of this class is created as follows.
+
+```javascript
+// src/javascript/World/index.js
+
+this.controls = new Controls({
+    time: this.time,
+    sizes: this.sizes,
+});
+```
+You can put some callbacks after the mouse is pressed or released via the `EventEmitter` as follows. You can also receive the current mouse position in Normalized Device Coordinate (NDC).
+
+```javascript
+// execute when pressing down the mouse button
+this.time.on('mouseDown', myCallback);
+
+// execute when releasing the mouse button
+this.time.on('mouseUp', myCallback);
+
+// current mouse x position: [-1, 1] from left to right
+this.controls.mouse.x;
+
+// current mouse y position: [-1, 1] from bottom to top
+this.controls.mouse.y;
+```
+
+You can write your own custom events in `src/javascrpt/World/Controls.js` such as double click, keyboard controls, Raycaster, etc.
 
 ## Add Material
 

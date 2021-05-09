@@ -7,13 +7,12 @@ export default class EventEmiter {
     // input : this.on('xx/yy/zz.alpha', callback)
     // result: this.callbacks['base'] = {'xx':[..., callback], 'yy':[..., callback]}
     //         this.callbacks['alpha'] = {'zz':[..., callback]}
-    on(_names, callback) {
+    on(_names, _callback, _unsubsrcibe) {
         if (typeof _names === 'undefined' || _names === '') {
             console.warn('wrong names');
             return false;
         }
-
-        if (typeof callback === 'undefined') {
+        if (typeof _callback === 'undefined') {
             console.warn('wrong callback');
             return false;
         }
@@ -31,10 +30,10 @@ export default class EventEmiter {
                 this.callbacks[name.namespace][name.value] = [];
             }
 
-            this.callbacks[name.namespace][name.value].push(callback);
+            this.callbacks[name.namespace][name.value].push(_callback);
         });
 
-        return this;
+        return { _names, _callback, _unsubsrcibe };
     }
 
     // input : this.trigger('xx', [5,3])
@@ -82,6 +81,42 @@ export default class EventEmiter {
         }
 
         return finalResult;
+    }
+
+    // ex: this.remove({_names: 'xx', _callback: ...})
+    // ex: this.remove({_names: 'xx/yy/zz.alpha', _callback: ...})
+    remove(_target) {
+        const { _names, _callback, _unsubsrcibe } = _target;
+
+        if (typeof _names === 'undefined' || _names === '') {
+            console.warn('wrong names');
+            return false;
+        }
+        if (typeof _callback === 'undefined') {
+            console.warn('wrong callback');
+            return false;
+        }
+
+        const names = EventEmiter.resolveNames(_names);
+
+        names.forEach((_name) => {
+            const name = EventEmiter.resolveName(_name);
+            const { namespace, value } = name;
+
+            if (!(this.callbacks[namespace] instanceof Object)) return;
+            if (!(this.callbacks[namespace][value] instanceof Array)) return;
+
+            // remove the callback
+            this.callbacks[namespace][value] = this.callbacks[namespace][value].filter((callback) => callback !== _callback);
+            // execute unsubsrcibe function
+            if (_unsubsrcibe instanceof Function) _unsubsrcibe();
+
+            if (!this.callbacks[namespace][value].length) {
+                delete this.callbacks[namespace][value];
+            }
+        });
+
+        return this;
     }
 
     // ex: 'xx/yy/zz' -> ['xx', 'yy', 'zz']

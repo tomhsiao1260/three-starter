@@ -47,7 +47,6 @@ export default class World {
         this.controls = new Controls({
             time: this.time,
             sizes: this.sizes,
-            camera: this.camera,
         });
     }
 

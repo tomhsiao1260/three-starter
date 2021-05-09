@@ -27,7 +27,8 @@
       "import/no-unresolved": 0,
       "import/extensions": 0,
   
-      "no-mixed-operators": 0
+      "no-mixed-operators": 0,
+      "max-len": 0
     },
   
     "globals": {

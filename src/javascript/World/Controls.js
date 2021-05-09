@@ -4,14 +4,12 @@ export default class Controls {
     constructor(_option) {
         this.time = _option.time;
         this.sizes = _option.sizes;
-        this.camera = _option.camera;
 
         this.setMouse();
     }
 
     setMouse() {
         this.mouse = new THREE.Vector2();
-        this.raycaster = new THREE.Raycaster();
 
         // triggered when the mouse moves
         window.addEventListener('mousemove', (event) => {
@@ -19,7 +17,7 @@ export default class Controls {
             this.mouse.y = -(event.clientY / this.sizes.height) * 2 + 1;
         });
 
-        // after clicking the mouse
+        // after pressing down the mouse button
         window.addEventListener('pointerdown', () => {
             this.time.trigger('mouseDown');
         });
@@ -44,11 +42,6 @@ export default class Controls {
         // touch end on mobile
         window.addEventListener('touchend', () => {
             this.time.trigger('mouseUp');
-        });
-
-        // set up the Raycaster based on mouse events
-        this.time.on('tick', () => {
-            this.raycaster.setFromCamera(this.mouse, this.camera.instance);
         });
     }
 }

@@ -17,9 +17,9 @@ A three.js starter based on object-oriented programming.
 - [Create Mesh](#create-mesh)
 - [Load Model](#load-model)
 - [Customized Shader](#customized-shader)
-- [GSAP Animation](#load-model)
+- [GSAP Animation](#gsap-animation)
 - [Debug Mode](#debug-mode)
-- [Notes](#Notes)
+- [Notes](#notes)
 
 ## Introduction
 

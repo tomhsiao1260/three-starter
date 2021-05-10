@@ -337,3 +337,9 @@ window.application = new Application({
 ```
 
 ## Notes
+
+Would be really appreciated if you are willing to give me a star 🎉
+
+If you have any questions or somewhere I can do better, welcome to send an issue or e-mail to me 🙏
+
+e-mail: tomtogo1260@gmail.com

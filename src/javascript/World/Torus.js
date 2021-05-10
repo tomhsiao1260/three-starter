@@ -28,10 +28,9 @@ export default class Torus {
         this.container.updateMatrix();
 
         if (this.debug) {
-            this.debugFolder.add(this.container, 'visible').name('visible');
-            this.debugFolder.add(this.container.rotation, 'y')
+            this.debugFolder.add(mesh, 'visible').name('visible');
+            this.debugFolder.add(mesh.rotation, 'y')
                             .step(0.001).min(-Math.PI).max(Math.PI)
-                            .onChange(() => this.container.updateMatrix())
                             .name('rotateY');
         }
     }

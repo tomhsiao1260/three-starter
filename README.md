@@ -268,7 +268,7 @@ const mesh = new THREE.Mesh(geometry, material);
 
 ## GSAP Animation
 
-To handle animations in Three.js, one of the well-known options is [GSAP](https://greensock.com/gsap/) library which is blazing fast for JavaScript animations. For convenience and more predictable behavior, we use only single [GSAP Timeline](https://greensock.com/docs/v3/GSAP/Timeline) and apply some [Labels](https://greensock.com/docs/v3/GSAP/Timeline/addLabel()) to handle all animations. 
+To handle animations in Three.js, one of the well-known options is [GSAP](https://greensock.com/gsap/) which is a blazing fast library for JavaScript animations. For convenience and more predictable behavior, we use only single [GSAP Timeline](https://greensock.com/docs/v3/GSAP/Timeline) and apply some [Labels](https://greensock.com/docs/v3/GSAP/Timeline/addLabel()) to handle all animations. 
 
 ```javascript
 // src/javascript/World/Transition.js
@@ -305,5 +305,35 @@ async start() {
 This can ensure that `.secondTransition()` would not be executed until `.firstTransition()` is resolved. You can also add some procedures between each transition function if needed.
 
 ## Debug Mode
+
+To enter the debug mode, you can append `#debug` at the end of the route http://localhost:8080/#debug. It would have a [stats.js](https://github.com/mrdoob/stats.js/) performance monitor, and a [dat.gui](https://github.com/dataarts/dat.gui) controller on the upper left and upper right.
+
+In order to tune some parameters via `dat.gui` (ex: visible of Torus), you can do the following steps.
+
+```javascript
+// src/javascript/World/Torus.js
+
+// create dat.gui folder
+if (this.debug) {
+    this.debugFolder = this.debug.addFolder('torus');
+    this.debugFolder.open();
+}
+
+// add some tuning parameters to this folder
+if (this.debug) {
+    this.debugFolder.add(mesh, 'visible').name('visible');
+    ...
+}
+```
+
+Sometimes, printing out the entire scene graph is helpful for understanding the inheritance relationship between objects. In this starter, the entire application has already been added to the global `window` object, so that you can easily print it out by typing `window.application` on your browser [console panel](https://developer.chrome.com/docs/devtools/console/).
+
+```javascript
+// src/index.js
+
+window.application = new Application({
+    $canvas: document.querySelector('.js-canvas'),
+});
+```
 
 ## Notes

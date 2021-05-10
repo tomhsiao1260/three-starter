@@ -31,10 +31,9 @@ export default class Fox {
         });
 
         if (this.debug) {
-            this.debugFolder.add(this.container, 'visible').name('visible');
-            this.debugFolder.add(this.container.position, 'z')
+            this.debugFolder.add(this.gltf.scene, 'visible').name('visible');
+            this.debugFolder.add(this.gltf.scene.position, 'z')
                             .step(0.001).min(-2).max(2)
-                            .onChange(() => this.container.updateMatrix())
                             .name('positionZ');
         }
     }

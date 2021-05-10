@@ -1,3 +1,4 @@
+import Stats from 'stats.js';
 import EventEmitter from './EventEmitter';
 
 export default class Time extends EventEmitter {
@@ -9,13 +10,24 @@ export default class Time extends EventEmitter {
         this.elapsed = 0;
         this.delta = 16;
 
+        this.setStats();
+
         this.tick = this.tick.bind(this);
         this.tick();
+    }
+
+    setStats() {
+        this.stats = new Stats();
+        this.stats.showPanel(0);
+        if (window.location.hash === '#debug') {
+            document.body.appendChild(this.stats.dom);
+        }
     }
 
     tick() {
         this.ticker = window.requestAnimationFrame(this.tick);
 
+        this.stats.begin();
         const current = Date.now();
 
         this.delta = current - this.current;
@@ -27,6 +39,7 @@ export default class Time extends EventEmitter {
         }
 
         this.trigger('tick');
+        this.stats.end();
     }
 
     stop() {

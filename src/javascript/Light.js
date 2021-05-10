@@ -7,11 +7,6 @@ export default class Light {
         this.container = new THREE.Object3D();
         this.container.matrixAutoUpdate = false;
 
-        if (this.debug) {
-            this.debugFolder = this.debug.addFolder('light');
-            // this.debugFolder.open();
-        }
-
         this.setInstance();
     }
 

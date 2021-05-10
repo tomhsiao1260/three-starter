@@ -33,10 +33,9 @@ export default class Plane {
         });
 
         if (this.debug) {
-            this.debugFolder.add(this.container, 'visible').name('visible');
-            this.debugFolder.add(this.container.rotation, 'z')
+            this.debugFolder.add(mesh, 'visible').name('visible');
+            this.debugFolder.add(mesh.rotation, 'z')
                             .step(0.001).min(-Math.PI).max(Math.PI)
-                            .onChange(() => this.container.updateMatrix())
                             .name('rotationZ');
         }
     }

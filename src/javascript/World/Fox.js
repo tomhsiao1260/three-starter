@@ -18,17 +18,16 @@ export default class Fox {
     }
 
     setFox() {
-        const gltf = this.resources.items.fox;
-        gltf.scene.scale.set(0.0025, 0.0025, 0.0025);
+        this.gltf = this.resources.items.fox;
+        this.gltf.scene.scale.set(0.0025, 0.0025, 0.0025);
+        this.container.add(this.gltf.scene);
 
-        this.container.add(gltf.scene);
-
-        const mixer = new THREE.AnimationMixer(gltf.scene);
-        const action = mixer.clipAction(gltf.animations[2]);
-        action.play();
+        this.mixer = new THREE.AnimationMixer(this.gltf.scene);
+        this.action = this.mixer.clipAction(this.gltf.animations[2]);
+        this.action.play();
 
         this.time.on('tick', () => {
-            mixer.update(this.time.delta * 0.001);
+            this.mixer.update(this.time.delta * 0.001);
         });
 
         if (this.debug) {

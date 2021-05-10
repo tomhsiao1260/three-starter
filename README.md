@@ -268,6 +268,42 @@ const mesh = new THREE.Mesh(geometry, material);
 
 ## GSAP Animation
 
+To handle animations in Three.js, one of the well-known options is [GSAP](https://greensock.com/gsap/) library which is blazing fast for JavaScript animations. For convenience and more predictable behavior, we use only single [GSAP Timeline](https://greensock.com/docs/v3/GSAP/Timeline) and apply some [Labels](https://greensock.com/docs/v3/GSAP/Timeline/addLabel()) to handle all animations. 
+
+```javascript
+// src/javascript/World/Transition.js
+
+// all animations should be applied via this timeline
+this.timeline = gsap.timeline();
+
+...
+
+const targetA = this.camera.instance.position;
+const targetB = this.light.directionalLight;
+const targetC = this.light.ambientLight;
+
+this.timeline.to(targetA, { z: 1, duration: 2 }, 'firstTransition');
+this.timeline.to(targetB, { intensity: 0.8, duration: 4 }, '<');
+this.timeline.to(targetC, { intensity: 0.8, duration: 4 }, '<');
+
+return this.timeline;
+```
+
+In `GSAP 3`, the `timeline` would resolve a promise when all animations are complete. As a result, we can return `this.timeline` at the end of the function, and then use `await` which is a syntactic sugar on top of the promises to manage the animation workflow as follows.
+
+```javascript
+// src/javscript/World/index.js
+
+async start() {
+    ...
+    await this.transition.firstTransition();
+    await this.transition.secondTransition();
+    ...
+}
+```
+
+This can ensure that `.secondTransition()` would not be executed until `.firstTransition()` is resolved. You can also add some procedures between each transition function if needed.
+
 ## Debug Mode
 
 ## Notes

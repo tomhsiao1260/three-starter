@@ -7,7 +7,7 @@ import Resources from './Resources';
 
 import Camera from './Camera';
 import Light from './Light';
-import World from './World/index';
+import World from './World';
 
 export default class Application {
     constructor(_options) {
@@ -58,8 +58,8 @@ export default class Application {
         this.camera = new Camera({
             time: this.time,
             sizes: this.sizes,
-            renderer: this.renderer,
             debug: this.debug,
+            renderer: this.renderer,
         });
 
         this.scene.add(this.camera.container);
@@ -78,12 +78,13 @@ export default class Application {
 
     setWorld() {
         this.world = new World({
-            resources: this.resources,
             time: this.time,
             sizes: this.sizes,
+            debug: this.debug,
+            light: this.light,
             camera: this.camera,
             renderer: this.renderer,
-            debug: this.debug,
+            resources: this.resources,
         });
         this.scene.add(this.world.container);
     }

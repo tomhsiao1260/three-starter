@@ -5,15 +5,17 @@ import Controls from './Controls';
 import Torus from './Torus';
 import Plane from './Plane';
 import Fox from './Fox';
+import Transition from './Transition';
 
 export default class World {
     constructor(_option) {
-        this.resources = _option.resources;
         this.time = _option.time;
         this.sizes = _option.sizes;
+        this.debug = _option.debug;
+        this.light = _option.light;
         this.camera = _option.camera;
         this.renderer = _option.renderer;
-        this.debug = _option.debug;
+        this.resources = _option.resources;
 
         this.container = new THREE.Object3D();
         this.container.matrixAutoUpdate = false;
@@ -34,19 +36,27 @@ export default class World {
         this.resources.on('ready', () => this.start());
     }
 
-    start() {
-        this.material = new Materials({ resources: this.resources });
-
+    async start() {
         this.setControls();
+        this.setMaterial();
         this.setTorus();
         this.setPlane();
         this.setFox();
+        this.setTransition();
+
+        await this.transition.firstTransition();
     }
 
     setControls() {
         this.controls = new Controls({
             time: this.time,
             sizes: this.sizes,
+        });
+    }
+
+    setMaterial() {
+        this.material = new Materials({
+            resources: this.resources,
         });
     }
 
@@ -74,5 +84,12 @@ export default class World {
             debug: this.debugFolder,
         });
         this.container.add(this.fox.container);
+    }
+
+    setTransition() {
+        this.transition = new Transition({
+            light: this.light,
+            camera: this.camera,
+        });
     }
 }

@@ -6,6 +6,7 @@ import Sizes from './Utils/Sizes';
 import Resources from './Resources';
 
 import Camera from './Camera';
+import Light from './Light';
 import World from './World/index';
 
 export default class Application {
@@ -20,6 +21,7 @@ export default class Application {
         this.setDebug();
         this.setRenderer();
         this.setCamera();
+        this.setLight();
         this.setWorld();
     }
 
@@ -65,6 +67,13 @@ export default class Application {
         this.time.on('tick', () => {
             this.renderer.render(this.scene, this.camera.instance);
         });
+    }
+
+    setLight() {
+        this.light = new Light({
+            debug: this.debug,
+        });
+        this.scene.add(this.light.container);
     }
 
     setWorld() {

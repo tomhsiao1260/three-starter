@@ -27,11 +27,6 @@ export default class Fox {
         const action = mixer.clipAction(gltf.animations[2]);
         action.play();
 
-        // lights are only used for demo this model
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
-        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-        this.container.add(ambientLight, directionalLight);
-
         this.time.on('tick', () => {
             mixer.update(this.time.delta * 0.001);
         });

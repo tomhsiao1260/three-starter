@@ -23,6 +23,12 @@ A three.js starter based on object-oriented programming.
 
 ## Introduction
 
+A three.js starter written in OOP based on Bruno Simon's [website](https://bruno-simon.com/). I think this would really help for web developers, who are trying to use three.js library in a more modular and manageable way in future projects. It's also a quick guide to learn some basics from Bruno Simon's [project](https://github.com/brunosimon/folio-2019).
+
+To use this starter, I would go through some main steps. However, you don't need to complete the entire document before getting started, instead, you can come back if needed while developing your own project.
+
+<strong>Features: [three.js](https://threejs.org/), [WebGL](https://github.com/KhronosGroup/WebGL), [GSAP](https://greensock.com/gsap/), [dat.gui](https://github.com/dataarts/dat.gui), [webpack](https://webpack.js.org/), [Babel](https://babeljs.io/), OOP</strong>
+
 ## Getting Started
 Type the following steps into the terminal.
 

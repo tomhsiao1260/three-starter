@@ -15,8 +15,8 @@ export default class Transition {
         const targetC = this.light.ambientLight;
 
         this.timeline.to(targetA, { z: 1, duration: 2 }, 'firstTransition');
-        this.timeline.to(targetB, { intensity: 0.8, duration: 4 }, '<');
-        this.timeline.to(targetC, { intensity: 0.8, duration: 4 }, '<');
+        this.timeline.to(targetB, { intensity: 0.8, duration: 3 }, '<');
+        this.timeline.to(targetC, { intensity: 0.8, duration: 3 }, '<');
 
         return this.timeline;
     }

@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "home": "https://tomhsiao1260.github.io/three-starter/",
   "scripts": {
     "build": "webpack --config ./bundler/webpack.prod.js",
     "dev": "webpack serve --open --config ./bundler/webpack.dev.js",
-    "lint": "eslint ./src"
+    "lint": "eslint ./src",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -26,6 +29,7 @@
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
     "file-loader": "^6.2.0",
+    "gh-pages": "^3.1.0",
     "html-loader": "^2.0.0",
     "html-webpack-plugin": "^5.1.0",
     "raw-loader": "^4.0.2",

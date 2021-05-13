@@ -342,6 +342,8 @@ window.application = new Application({
 });
 ```
 
+Note that the current `dat.gui` library is installed locally instead of using `npm i dat.gui` in order to remove the ReDos [vulnerabilities warning](https://www.npmjs.com/advisories/1701) which is harmless when developing a frontend-only projects. Actually, this issue has already been [fixed and merged](https://github.com/dataarts/dat.gui/pull/279) recently and the warning will disappear after both `dat.gui` new version and `npm` security advisories have been updated. I will keep an eye on that and update this starter until `dat.gui` vulnerabilities warning disappears 🙂
+
 ## Notes
 
 Would be really appreciated if you are willing to give me a star 🎉

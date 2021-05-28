@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import * as dat from './Libs/dat.gui';
+import * as dat from './Libs/dat.gui.module';
 
 import Time from './Utils/Time';
 import Sizes from './Utils/Sizes';

@@ -42,6 +42,7 @@ export default class EventEmiter {
     trigger(_name, _args) {
         if (typeof _name === 'undefined' || _name === '') {
             console.warn('wrong name');
+            return false;
         }
 
         let finalResult = null;

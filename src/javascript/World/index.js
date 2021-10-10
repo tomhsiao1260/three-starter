@@ -14,6 +14,7 @@ export default class World {
         this.debug = _option.debug;
         this.light = _option.light;
         this.camera = _option.camera;
+        this.cameraInstance = _option.cameraInstance;
         this.renderer = _option.renderer;
         this.resources = _option.resources;
 
@@ -62,6 +63,9 @@ export default class World {
 
     setTorus() {
         this.torus = new Torus({
+            camera: this.camera,
+            cameraInstance: this.cameraInstance,
+            renderer: this.renderer,
             material: this.material,
             debug: this.debugFolder,
         });

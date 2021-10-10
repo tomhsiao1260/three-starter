@@ -83,6 +83,7 @@ export default class Application {
             debug: this.debug,
             light: this.light,
             camera: this.camera,
+            cameraInstance: this.camera.getCameraInstance(),
             renderer: this.renderer,
             resources: this.resources,
         });

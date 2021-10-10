@@ -29,6 +29,10 @@ export default class Camera {
         });
     }
 
+    getCameraInstance() {
+        return this.instance;
+    }
+
     setOrbitControls() {
         this.orbitControls = new OrbitControls(this.instance, this.renderer.domElement);
         this.orbitControls.enableDamping = true;

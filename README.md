@@ -312,14 +312,14 @@ This can ensure that `.secondTransition()` would not be executed until `.firstTr
 
 ## Debug Mode
 
-To enter the debug mode, you can append `#debug` at the end of the route http://localhost:8080/#debug. It would have [stats.js](https://github.com/mrdoob/stats.js/) performance monitor, and [dat.gui](https://github.com/dataarts/dat.gui) controller on the upper left and upper right, respectively.
+To enter the debug mode, you can append `#debug` at the end of the route http://localhost:8080/#debug. It would have [stats.js](https://github.com/mrdoob/stats.js/) performance monitor, and [lil-gui](https://lil-gui.georgealways.com/) controller on the upper left and upper right, respectively.
 
-In order to tune some parameters via `dat.gui` (ex: visibility of a Torus), you can do the following steps.
+In order to tune some parameters via `lil-gui` (ex: visibility of a Torus), you can do the following steps.
 
 ```javascript
 // src/javascript/World/Torus.js
 
-// create dat.gui folder
+// create lil-gui folder
 if (this.debug) {
     this.debugFolder = this.debug.addFolder('torus');
     this.debugFolder.open();
@@ -341,8 +341,6 @@ window.application = new Application({
     $canvas: document.querySelector('.js-canvas'),
 });
 ```
-
-Note that the current `dat.gui` library is installed locally instead of using `npm i dat.gui` in order to remove the ReDos [vulnerabilities warning](https://www.npmjs.com/advisories/1701) which is harmless when developing a frontend-only projects. Actually, this issue has already been [fixed and merged](https://github.com/dataarts/dat.gui/pull/279) recently and the warning will disappear after both `dat.gui` new version and `npm` security advisories have been updated. I will keep an eye on that and update this starter until `dat.gui` vulnerabilities warning disappears 🙂
 
 ## Notes
 

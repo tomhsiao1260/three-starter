@@ -6,6 +6,9 @@ import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
 import EventEmitter from './EventEmitter';
 
 export default class Loader extends EventEmitter {
+    toLoad: number;
+    loaded: number;
+    loaders: { extensions: string[], action: (resource: any) => void }[];
     constructor() {
         super();
 

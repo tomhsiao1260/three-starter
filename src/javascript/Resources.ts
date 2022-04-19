@@ -6,6 +6,8 @@ const matcapGoldSource = '/models/matcaps/gold.png';
 const foxSource = '/models/fox/glTF-Binary/Fox.glb';
 
 export default class Resources extends EventEmitter {
+    loader: Loader;
+    items: {};
     constructor() {
         super();
 

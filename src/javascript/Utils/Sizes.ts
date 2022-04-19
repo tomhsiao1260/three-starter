@@ -1,16 +1,22 @@
 import EventEmitter from './EventEmitter';
 
 export default class Sizes extends EventEmitter {
+    viewport = {
+        width: 0,
+        height: 0,
+    };
+    $sizeViewport: HTMLDivElement;
+    width: number;
+    height: number;
     constructor() {
         super();
 
-        this.viewport = {};
         this.$sizeViewport = document.createElement('div');
         this.$sizeViewport.style.width = '100vw';
         this.$sizeViewport.style.height = '100vh';
         this.$sizeViewport.style.position = 'absolute';
-        this.$sizeViewport.style.top = 0;
-        this.$sizeViewport.style.left = 0;
+        this.$sizeViewport.style.top = '0';
+        this.$sizeViewport.style.left = '0';
         this.$sizeViewport.style.pointerEvents = 'none';
 
         this.resize = this.resize.bind(this);

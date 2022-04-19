@@ -1,4 +1,7 @@
 export default class EventEmiter {
+    callbacks: {
+        [key: string]: any
+    };
     constructor() {
         this.callbacks = {};
         this.callbacks.base = {};
@@ -7,7 +10,7 @@ export default class EventEmiter {
     // input : this.on('xx/yy/zz.alpha', callback)
     // result: this.callbacks['base'] = {'xx':[..., callback], 'yy':[..., callback]}
     //         this.callbacks['alpha'] = {'zz':[..., callback]}
-    on(_names, _callback, _unsubsrcibe) {
+    on(_names: string, _callback: Function, _unsubscribe?: Function) {
         if (typeof _names === 'undefined' || _names === '') {
             console.warn('wrong names');
             return false;
@@ -33,19 +36,19 @@ export default class EventEmiter {
             this.callbacks[name.namespace][name.value].push(_callback);
         });
 
-        return { _names, _callback, _unsubsrcibe };
+        return { _names, _callback, _unsubscribe };
     }
 
     // input : this.trigger('xx', [5,3])
     // result: this.callbacks['base']['xx'] -> [c1, c2, ...]
     //         execute c1(5,3), c2(5,3)
-    trigger(_name, _args) {
+    trigger(_name: string, _args?: any[]) {
         if (typeof _name === 'undefined' || _name === '') {
             console.warn('wrong name');
             return false;
         }
 
-        let finalResult = null;
+        let finalResult: null | undefined = null;
         let result = null;
 
         // Default args []
@@ -73,7 +76,7 @@ export default class EventEmiter {
                 return this;
             }
 
-            this.callbacks[namespace][value].forEach((callback) => {
+            this.callbacks[namespace][value].forEach((callback: Function) => {
                 // execute callback
                 result = callback.apply(this, args);
 
@@ -86,8 +89,8 @@ export default class EventEmiter {
 
     // ex: this.remove({_names: 'xx', _callback: ...})
     // ex: this.remove({_names: 'xx/yy/zz.alpha', _callback: ...})
-    remove(_target) {
-        const { _names, _callback, _unsubsrcibe } = _target;
+    remove(_target: { _names: string, _callback: Function, _unsubscribe?: Function }) {
+        const { _names, _callback, _unsubscribe } = _target;
 
         if (typeof _names === 'undefined' || _names === '') {
             console.warn('wrong names');
@@ -108,9 +111,9 @@ export default class EventEmiter {
             if (!(this.callbacks[namespace][value] instanceof Array)) return;
 
             // remove the callback
-            this.callbacks[namespace][value] = this.callbacks[namespace][value].filter((callback) => callback !== _callback);
+            this.callbacks[namespace][value] = this.callbacks[namespace][value].filter((callback: Function) => callback !== _callback);
             // execute unsubsrcibe function
-            if (_unsubsrcibe instanceof Function) _unsubsrcibe();
+            if (_unsubscribe instanceof Function) _unsubscribe();
 
             if (!this.callbacks[namespace][value].length) {
                 delete this.callbacks[namespace][value];
@@ -121,19 +124,19 @@ export default class EventEmiter {
     }
 
     // ex: 'xx/yy/zz' -> ['xx', 'yy', 'zz']
-    static resolveNames(_names) {
+    static resolveNames(_names: string) {
         let names = _names;
-        names = names.replace(/[^a-zA-Z0-9 ,/.]/g, '');
-        names = names.replace(/[,/]+/g, ' ');
-        names = names.split(' ');
+        let names_step_1 = names.replace(/[^a-zA-Z0-9 ,/.]/g, '');
+        let names_step_2 = names_step_1.replace(/[,/]+/g, ' ');
+        let names_step_3 = names_step_2.split(' ');
 
-        return names;
+        return names_step_3;
     }
 
     // ex: 'xx'    -> {original:    'xx', value: 'xx', namespace: 'base'}
     // ex: 'xx.yy' -> {original: 'xx.yy', value: 'xx', namespace:   'yy'}
-    static resolveName(name) {
-        const newName = {};
+    static resolveName(name: string): { original: string, value: string, namespace: string } {
+        const newName: any = {};
         const [value, namespace] = name.split('.');
 
         newName.original = name;

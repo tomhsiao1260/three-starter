@@ -10,7 +10,20 @@ import Light from './Light';
 import World from './World';
 
 export default class Application {
-    constructor(_options) {
+    $canvas: HTMLCanvasElement;
+    time: Time;
+    sizes: Sizes;
+    resources: Resources;
+    config: {
+        debug?: boolean;
+    };
+    debug: boolean;
+    scene: THREE.Scene;
+    renderer: THREE.WebGLRenderer;
+    camera: Camera;
+    light: Light;
+    world: World;
+    constructor(_options: { $canvas: HTMLCanvasElement }) {
         this.$canvas = _options.$canvas;
 
         this.time = new Time();
@@ -65,7 +78,7 @@ export default class Application {
         this.scene.add(this.camera.container);
 
         this.time.on('tick', () => {
-            this.renderer.render(this.scene, this.camera.instance);
+            this.renderer.render(this.scene, this.camera.instance!);
         });
     }
 

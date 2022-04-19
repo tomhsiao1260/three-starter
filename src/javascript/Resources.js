@@ -1,9 +1,9 @@
 import Loader from './Utils/Loader';
 import EventEmitter from './Utils/EventEmitter';
 
-import matcapRedSource from '../models/matcaps/red.png';
-import matcapGoldSource from '../models/matcaps/gold.png';
-import foxSource from '../models/fox/glTF-Binary/Fox.glb';
+const matcapRedSource = '/models/matcaps/red.png';
+const matcapGoldSource = '/models/matcaps/gold.png';
+const foxSource = '/models/fox/glTF-Binary/Fox.glb';
 
 export default class Resources extends EventEmitter {
     constructor() {

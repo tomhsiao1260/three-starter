@@ -1,7 +1,11 @@
 import * as THREE from 'three';
 
 export default class Torus {
-    constructor(_option) {
+    material: any;
+    debug: any;
+    container: THREE.Object3D<THREE.Event>;
+    debugFolder: any;
+    constructor(_option: { material: any; debug: any; }) {
         this.material = _option.material;
         this.debug = _option.debug;
 

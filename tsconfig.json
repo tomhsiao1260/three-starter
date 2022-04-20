@@ -14,7 +14,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
-    "allowJs": true,
+    "allowJs": false,
 		"paths": {
 		  "./*": ["./*"]
 		},

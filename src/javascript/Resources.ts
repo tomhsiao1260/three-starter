@@ -8,7 +8,7 @@ import foxSource from '../models/fox/glTF-Binary/Fox.glb?url';
 
 export default class Resources extends EventEmitter {
     loader: Loader;
-    items: {};
+    items: any;
     constructor() {
         super();
 
@@ -16,7 +16,7 @@ export default class Resources extends EventEmitter {
         this.items = {}; // {'name1': texture1, 'name2': texture2, ...}
 
         // execute after loading each asset
-        this.loader.on('fileEnd', (_resource, _data) => {
+        this.loader.on('fileEnd', (_resource: any, _data: any) => {
             this.items[_resource.name] = _data;
 
             const { loaded, toLoad } = this.loader;

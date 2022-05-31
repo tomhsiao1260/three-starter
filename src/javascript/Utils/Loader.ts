@@ -42,7 +42,8 @@ export default class Loader extends EventEmitter {
             action: (_resource) => {
                 dracoLoader.load(_resource.source, (_data) => {
                     this.fileLoadEnd(_resource, _data);
-                    DRACOLoader.releaseDecoderModule();
+                    // this is deprecated https://discourse.threejs.org/t/issue-with-setdecoderpath/9556
+                    (DRACOLoader as any).releaseDecoderModule();
                 });
             },
         });
@@ -74,7 +75,7 @@ export default class Loader extends EventEmitter {
     }
 
     // execute after loading each asset
-    fileLoadEnd(_resource, _data) {
+    fileLoadEnd(_resource: any, _data: any) {
         this.loaded += 1;
 
         // ex: _data: THREE Texture
@@ -86,8 +87,8 @@ export default class Loader extends EventEmitter {
         }
     }
 
-    load(_resources = []) {
-        _resources.forEach((_resource) => {
+    load(_resources: any[] = []) {
+        _resources.forEach((_resource: any) => {
             this.toLoad += 1;
             // jpg, png, ...
             const extensionMatch = _resource.source.match(/\.([a-z]+)$/);

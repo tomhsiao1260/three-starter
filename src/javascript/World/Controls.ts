@@ -1,7 +1,10 @@
 import * as THREE from 'three';
 
 export default class Controls {
-    constructor(_option) {
+    time: any;
+    sizes: any;
+    mouse: THREE.Vector2;
+    constructor(_option: { time: any; sizes: any; }) {
         this.time = _option.time;
         this.sizes = _option.sizes;
 

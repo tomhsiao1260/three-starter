@@ -1,7 +1,11 @@
 import * as THREE from 'three';
 
 export default class Light {
-    constructor(_option) {
+    debug: boolean;
+    container: THREE.Object3D<THREE.Event>;
+    ambientLight: THREE.AmbientLight;
+    directionalLight: THREE.DirectionalLight;
+    constructor(_option: { debug: boolean }) {
         this.debug = _option.debug;
 
         this.container = new THREE.Object3D();

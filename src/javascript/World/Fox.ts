@@ -1,7 +1,15 @@
 import * as THREE from 'three';
 
 export default class Fox {
-    constructor(_option) {
+    resources: any;
+    time: any;
+    debug: any;
+    container: THREE.Object3D<THREE.Event>;
+    debugFolder: any;
+    gltf: any;
+    mixer: THREE.AnimationMixer;
+    action: any;
+    constructor(_option: { resources: any; time: any; debug: any; }) {
         this.resources = _option.resources;
         this.time = _option.time;
         this.debug = _option.debug;

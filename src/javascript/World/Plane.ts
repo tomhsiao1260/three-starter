@@ -1,7 +1,12 @@
 import * as THREE from 'three';
 
 export default class Plane {
-    constructor(_option) {
+    material: any;
+    time: any;
+    debug: any;
+    container: THREE.Object3D<THREE.Event>;
+    debugFolder: any;
+    constructor(_option: { material: any; time: any; debug: any; }) {
         this.material = _option.material;
         this.time = _option.time;
         this.debug = _option.debug;

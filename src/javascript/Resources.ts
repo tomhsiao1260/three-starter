@@ -3,9 +3,12 @@ import EventEmitter from './Utils/EventEmitter';
 
 import matcapRedSource from '../models/matcaps/red.png';
 import matcapGoldSource from '../models/matcaps/gold.png';
-import foxSource from '../models/fox/glTF-Binary/Fox.glb';
+import foxSource from '../models/fox/glTF-Binary/Fox.glb?url';
+
 
 export default class Resources extends EventEmitter {
+    loader: Loader;
+    items: any;
     constructor() {
         super();
 
@@ -13,7 +16,7 @@ export default class Resources extends EventEmitter {
         this.items = {}; // {'name1': texture1, 'name2': texture2, ...}
 
         // execute after loading each asset
-        this.loader.on('fileEnd', (_resource, _data) => {
+        this.loader.on('fileEnd', (_resource: any, _data: any) => {
             this.items[_resource.name] = _data;
 
             const { loaded, toLoad } = this.loader;

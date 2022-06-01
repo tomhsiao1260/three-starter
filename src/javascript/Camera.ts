@@ -1,8 +1,18 @@
 import * as THREE from 'three';
+import { Renderer } from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+import Sizes from './Utils/Sizes';
+import Time from './Utils/Time';
 
 export default class Camera {
-    constructor(_option) {
+    time: any;
+    sizes: any;
+    debug: any;
+    renderer: any;
+    container: THREE.Object3D<THREE.Event>;
+    instance: THREE.PerspectiveCamera;
+    orbitControls: OrbitControls;
+    constructor(_option: { time: Time; sizes: Sizes; debug: boolean; renderer: Renderer; }) {
         this.time = _option.time;
         this.sizes = _option.sizes;
         this.debug = _option.debug;

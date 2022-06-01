@@ -2,6 +2,12 @@ import Stats from 'stats.js';
 import EventEmitter from './EventEmitter';
 
 export default class Time extends EventEmitter {
+    start: number;
+    current: any;
+    elapsed: number;
+    delta: number;
+    stats: any;
+    ticker: number;
     constructor() {
         super();
 

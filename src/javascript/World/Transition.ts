@@ -1,7 +1,10 @@
 import gsap from 'gsap';
 
 export default class Transition {
-    constructor(_option) {
+    light: any;
+    camera: any;
+    timeline: gsap.core.Timeline;
+    constructor(_option: { light: any; camera: any; }) {
         this.light = _option.light;
         this.camera = _option.camera;
 

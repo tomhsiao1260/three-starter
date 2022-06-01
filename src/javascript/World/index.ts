@@ -6,9 +6,26 @@ import Torus from './Torus';
 import Plane from './Plane';
 import Fox from './Fox';
 import Transition from './Transition';
+import Time from '../Utils/Time';
+import Sizes from '../Utils/Sizes';
 
 export default class World {
-    constructor(_option) {
+    time: Time;
+    sizes: Sizes;
+    debug: any;
+    light: any;
+    camera: any;
+    renderer: any;
+    resources: any;
+    container: THREE.Object3D<THREE.Event>;
+    debugFolder: any;
+    transition: any;
+    controls: Controls;
+    material: Materials;
+    torus: Torus;
+    plane: Plane;
+    fox: Fox;
+    constructor(_option: { time: any; sizes: any; debug: any; light: any; camera: any; renderer: any; resources: any; }) {
         this.time = _option.time;
         this.sizes = _option.sizes;
         this.debug = _option.debug;
@@ -32,7 +49,7 @@ export default class World {
     }
 
     setStartingScreen() {
-        this.resources.on('progess', (percent) => console.log(`progress ${percent}/100`));
+        this.resources.on('progess', (percent: any) => console.log(`progress ${percent}/100`));
         this.resources.on('ready', () => this.start());
     }
 

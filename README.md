@@ -27,6 +27,8 @@ This is a three.js starter written in OOP based on [Bruno Simon's project](https
 
 To use this starter, I would go through some main steps. However, you don't need to complete the entire document before getting started, instead, you can come back if needed while developing your own project.
 
+The [`main`](https://github.com/TomHsiao1260/three-starter/tree/main) branch is written in Javascript. Feel free to check out the [`vite/typescript`](https://github.com/TomHsiao1260/three-starter/tree/vite/typescript) branch if you prefer the Typescript version.
+
 Features: [Three.js](https://threejs.org/), [WebGL](https://github.com/KhronosGroup/WebGL), [GSAP](https://greensock.com/gsap/), [dat.gui](https://github.com/dataarts/dat.gui), [webpack](https://webpack.js.org/), [Babel](https://babeljs.io/), [ESLint](https://eslint.org/), OOP
 
 ## Getting Started
@@ -37,10 +39,12 @@ git clone https://github.com/TomHsiao1260/three-starter.git
 
 cd three-starter
 
+git checkout vite/typescript
+
 npm install
 ```
 
-Then start the dev server and navigate to http://localhost:8080
+Then start the dev server and navigate to http://localhost:3000
 
 ```bash
 npm run dev
@@ -342,10 +346,14 @@ window.application = new Application({
 });
 ```
 
+## Contributors
+
+Thanks [Daniele Tabanella](https://github.com/theRenard) for contributing the Typescript version in [`vite/typescript`](https://github.com/TomHsiao1260/three-starter/tree/vite/typescript) branch to make this repository better.
+
 ## Notes
 
 Would be really appreciated if you are willing to give me a star 🎉
 
-If you have any questions or somewhere I can do better, welcome to send an issue or e-mail to me 🙏
+If you have any questions or somewhere I can do better, welcome to send an issue or e-mail to me.
 
 e-mail: tomtogo1260@gmail.com

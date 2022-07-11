@@ -51,6 +51,9 @@ export default class World {
     setStartingScreen() {
         this.resources.on('progess', (percent: any) => console.log(`progress ${percent}/100`));
         this.resources.on('ready', () => this.start());
+
+        const { loaded, toLoad } = this.resources.loader;
+        if (loaded === toLoad) this.start();
     }
 
     async start() {

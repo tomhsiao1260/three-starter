@@ -36,7 +36,7 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
     "file-loader": "^6.2.0",
-    "gh-pages": "^4.0.0",
+    "gh-pages": "^6.3.0",
     "html-loader": "^3.1.0",
     "html-webpack-plugin": "^5.5.0",
     "lil-gui": "^0.16.1",

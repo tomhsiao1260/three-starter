@@ -347,11 +347,3 @@ window.application = new Application({
 ## Contributors
 
 Thanks [Daniele Tabanella](https://github.com/theRenard) for contributing the Typescript version in [`vite/typescript`](https://github.com/TomHsiao1260/three-starter/tree/vite/typescript) branch to make this repository better.
-
-## Notes
-
-Would be really appreciated if you are willing to give me a star 🎉
-
-If you have any questions or somewhere I can do better, welcome to send an issue or e-mail to me.
-
-e-mail: tomtogo1260@gmail.com
